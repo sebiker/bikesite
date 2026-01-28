@@ -1,23 +1,31 @@
-import { Page } from "@playwright/test";
+import { Page, Locator } from '@playwright/test';
 
 export class AccountMenu {
-    constructor(private readonly page: Page) {}
+  private readonly createAccountLink: Locator;
+  private readonly loginLink: Locator;
+  private readonly trackOrderLink: Locator;
 
-    async goToCreateAccount() {
-        await this.page
-            .getByRole('link', { name: /create an account/i })
-            .click();
-    }
+  constructor(private readonly page: Page) {
+    this.createAccountLink = page.getByRole('link', {
+      name: /create an account/i,
+    });
 
-    async goToLogin() {
-        await this.page
-            .getByRole('link', { name: /log in/i })
-            .click();
-    }
+    this.loginLink = page.getByRole('link', { name: /log in/i });
 
-    async goToTrackMyOrder() {
-        await this.page
-            .getByRole('link', { name: /track my order/i })
-            .click();
-    }
+    this.trackOrderLink = page.getByRole('link', {
+      name: /track my order/i,
+    });
+  }
+
+  async goToCreateAccount() {
+    await this.createAccountLink.click();
+  }
+
+  async goToLogin() {
+    await this.loginLink.click();
+  }
+
+  async goToTrackOrder() {
+    await this.trackOrderLink.click();
+  }
 }
