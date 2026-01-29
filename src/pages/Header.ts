@@ -1,11 +1,13 @@
-import { Page } from "@playwright/test";
+import { Page, Locator } from "@playwright/test";
 
 export class Header {
-    constructor(private readonly page: Page) {}
+    private readonly accountButton: Locator;
+
+    constructor(private readonly page: Page) {
+        this.accountButton = page.getByRole('button', { name: /account/i });
+    }
 
     async openAccountMenu() {
-        await this.page
-            .getByRole('button', { name: 'account/i' })
-            .click();
+        await this.accountButton.click();
     }
 }
