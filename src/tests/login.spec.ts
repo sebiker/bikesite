@@ -5,7 +5,7 @@ test('should log in through the account side menu', async ({ page }) => {
   const accountMenu = new AccountMenu(page);
 
   //Land on the website
-  await page.goto('');
+  await page.goto('https://bike24.com');
 
   //Accept the Cookie consent banner if it appears 
   await accountMenu.acceptCookies();
