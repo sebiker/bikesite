@@ -4,7 +4,7 @@ export class Header {
     private readonly accountButton: Locator;
 
     constructor(private readonly page: Page) {
-        this.accountButton = page.getByRole('button', { name: /account/i });
+        this.accountButton = page.getByTestId('account-btn');
     }
 
     async openAccountMenu() {
