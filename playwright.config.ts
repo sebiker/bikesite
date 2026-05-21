@@ -11,6 +11,13 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+const domain = 'bike24.com';
+
+export function getUrlRegex(path: string): RegExp {
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return new RegExp(`^https:\/\/(www\.)?${domain.replace('.', '\.')}${cleanPath}\/?$`);
+}
+
 export default defineConfig({
   testDir: './src/tests',
   /* Run tests in files in parallel */
